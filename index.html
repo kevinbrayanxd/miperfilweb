@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgenteK9 | Desarrollador Web Hacker Profesional</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&family=Press+Start+2P&display=swap">
+    <style>
+        :root {
+            --neon-green: #0fff50;
+            --neon-purple: #9c1aff;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #050505;
+            --text-color: #e0e0e0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Ubuntu Mono', monospace;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Estilo de terminal */
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid var(--neon-green);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--neon-green) }
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--darker-bg);
+            padding: 1rem;
+            border-bottom: 1px solid var(--neon-purple);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Press Start 2P', cursive;
+            color: var(--neon-green);
+            font-size: 1.2rem;
+        }
+        
+        .logo-icon {
+            font-size: 1.5rem;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--neon-green);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--neon-purple);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            background: linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.9)), 
+                        url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            margin-top: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-family: 'Press Start 2P', cursive;
+            color: var(--neon-green);
+            text-shadow: 0 0 10px rgba(15, 255, 80, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin-bottom: 2rem;
+        }
+        
+        .highlight {
+            color: var(--neon-purple);
+            font-weight: bold;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .btn-primary {
+            background-color: var(--neon-purple);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 15px var(--neon-purple);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--neon-green);
+            border-color: var(--neon-green);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--neon-green);
+            color: var(--dark-bg);
+            box-shadow: 0 0 15px var(--neon-green);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2rem;
+            color: var(--neon-green);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background-color: var(--neon-purple);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .about-content {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--neon-purple);
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .skill {
+            background-color: var(--darker-bg);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            border-left: 3px solid var(--neon-green);
+        }
+        
+        .about-image {
+            flex: 1;
+            position: relative;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            border: 2px solid var(--neon-purple);
+            box-shadow: 0 0 20px rgba(156, 26, 255, 0.3);
+        }
+        
+        .hacker-badge {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            background-color: var(--neon-green);
+            color: var(--dark-bg);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: bold;
+            transform: rotate(15deg);
+            box-shadow: 0 0 10px rgba(15, 255, 80, 0.5);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 5rem 2rem;
+            background-color: var(--darker-bg);
+        }
+        
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .service-card {
+            background-color: var(--dark-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            border-top: 3px solid var(--neon-purple);
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(156, 26, 255, 0.2);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--neon-green);
+            margin-bottom: 1rem;
+        }
+        
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--neon-purple);
+        }
+        
+        /* VIP Section */
+        .vip {
+            padding: 5rem 2rem;
+            text-align: center;
+            background: linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.9)), 
+                        url('https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+        }
+        
+        .vip-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .vip h2 {
+            color: var(--neon-green);
+            margin-bottom: 2rem;
+        }
+        
+        .vip-card {
+            background-color: rgba(20, 20, 20, 0.8);
+            padding: 3rem 2rem;
+            border-radius: 10px;
+            border: 2px solid var(--neon-purple);
+            box-shadow: 0 0 30px rgba(156, 26, 255, 0.3);
+            margin-top: 2rem;
+        }
+        
+        .vip-price {
+            font-size: 2.5rem;
+            color: var(--neon-green);
+            margin: 1rem 0;
+        }
+        
+        .vip-features {
+            text-align: left;
+            max-width: 500px;
+            margin: 2rem auto;
+        }
+        
+        .vip-features li {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .vip-features li::before {
+            content: '✓';
+            color: var(--neon-green);
+            position: absolute;
+            left: 0;
+        }
+        
+        .vip-btn {
+            background-color: var(--neon-purple);
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .vip-btn:hover {
+            background-color: transparent;
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 20px var(--neon-purple);
+        }
+        
+        /* Portfolio Section */
+        .portfolio {
+            padding: 5rem 2rem;
+            background-color: var(--dark-bg);
+        }
+        
+        .portfolio-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 250px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(156, 26, 255, 0.3);
+        }
+        
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s;
+        }
+        
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(9, 5, 47, 0.8), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-overlay h3 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .portfolio-overlay p {
+            color: var(--neon-green);
+            font-size: 0.9rem;
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            padding: 5rem 2rem;
+            background-color: var(--darker-bg);
+        }
+        
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .testimonial-card {
+            background-color: var(--dark-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            font-size: 5rem;
+            color: var(--neon-purple);
+            opacity: 0.2;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-family: serif;
+        }
+        
+        .testimonial-text {
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+            border: 2px solid var(--neon-green);
+        }
+        
+        .author-info h4 {
+            color: var(--neon-purple);
+        }
+        
+        .author-info p {
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+        
+        .stars {
+            color: gold;
+            margin-top: 0.3rem;
+        }
+        
+        /* Reviews Section */
+        .reviews {
+            padding: 5rem 2rem;
+            background-color: var(--dark-bg);
+        }
+        
+        .reviews-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        #reviews-list {
+            margin-top: 3rem;
+        }
+        
+        .review-item {
+            background-color: var(--darker-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            border-left: 3px solid var(--neon-purple);
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .review-author {
+            font-weight: bold;
+            color: var(--neon-green);
+        }
+        
+        .review-rating {
+            color: gold;
+        }
+        
+        .review-form {
+            margin-top: 3rem;
+            background-color: var(--darker-bg);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--neon-purple);
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #111;
+            border: 1px solid #333;
+            border-radius: 5px;
+            color: white;
+            font-family: 'Ubuntu Mono', monospace;
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: var(--neon-purple);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #7a0fd3;
+            box-shadow: 0 0 15px var(--neon-purple);
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 5rem 2rem;
+            background-color: var(--darker-bg);
+        }
+        
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--neon-green);
+        }
+        
+        .contact-text h3 {
+            color: var(--neon-purple);
+            margin-bottom: 0.3rem;
+        }
+        
+        .contact-form {
+            background-color: var(--dark-bg);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #050505;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-family: 'Press Start 2P', cursive;
+            color: var(--neon-green);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--neon-purple);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-link:hover {
+            background-color: var(--neon-purple);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .vip-card {
+                padding: 2rem 1rem;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <span class="logo-icon">👨‍💻</span>
+                <span>AgenteK9</span>
+            </div>
+            <div class="nav-links">
+                <a href="#about">Sobre Mí</a>
+                <a href="#services">Servicios</a>
+                <a href="#vip">Club VIP</a>
+                <a href="#portfolio">Portafolio</a>
+                <a href="#contact">Contacto</a>
+            </div>
+            <div class="hamburger">☰</div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="typewriter">AgenteK9 - Hacker & Desarrollador Web</h1>
+        <p>Creo <span class="highlight">soluciones digitales</span> para empresas y proyectos con <span class="highlight">amor y código limpio</span>. Especialista en desarrollo web seguro y eficiente.</p>
+        <div class="cta-buttons">
+            <a href="#portfolio" class="btn btn-primary">Ver Mis Proyectos</a>
+            <a href="#vip" class="btn btn-secondary">Únete al Club VIP</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-container">
+            <h2 class="section-title">Sobre Mí</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>El hacker que construye tu presencia digital</h3>
+                    <p>Soy AgenteK9, un desarrollador web con mentalidad hacker, especializado en crear sitios web rápidos, seguros y eficientes para empresas y proyectos personales. Mi enfoque combina técnicas avanzadas de desarrollo con un toque creativo único.</p>
+                    <p>Con más de 5 años de experiencia en el campo, he ayudado a decenas de clientes a establecer su presencia en línea con soluciones personalizadas que destacan por su rendimiento y seguridad.</p>
+                    
+                    <div class="skills">
+                        <div class="skill">HTML5 & CSS3</div>
+                        <div class="skill">JavaScript (ES6+)</div>
+                        <div class="skill">React.js</div>
+                        <div class="skill">Node.js</div>
+                        <div class="skill">Seguridad Web</div>
+                        <div class="skill">Firebase</div>
+                        <div class="skill">SEO Avanzado</div>
+                        <div class="skill">Hacking Ético</div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="AgenteK9 trabajando">
+                    <div class="hacker-badge">TOP HACKER</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="services-container">
+            <h2 class="section-title">Mis Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💼</div>
+                    <h3>Webs Empresariales</h3>
+                    <p>Sitios web profesionales diseñados para convertir visitantes en clientes. Optimizados para SEO y velocidad de carga.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛒</div>
+                    <h3>E-commerce Básico</h3>
+                    <p>Tiendas online con catálogo de productos, carrito de compras y pasarelas de pago integradas.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">❤️</div>
+                    <h3>Webs con Amor</h3>
+                    <p>Sitios especiales para bodas, aniversarios o proyectos personales con diseños emocionales y únicos.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔒</div>
+                    <h3>Seguridad Web</h3>
+                    <p>Auditorías y protección para tu sitio web contra vulnerabilidades y ataques maliciosos.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>Optimización</h3>
+                    <p>Mejoro el rendimiento de tu web existente para que cargue más rápido y posicione mejor.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3>Automatizaciones</h3>
+                    <p>Sistemas que automatizan procesos de negocio para ahorrarte tiempo y dinero.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIP Section -->
+    <section id="vip" class="vip">
+        <div class="vip-container">
+            <h2 class="section-title">Club VIP Hacker</h2>
+            <p>Accede a recursos exclusivos, herramientas premium y contenido avanzado por solo S/10 al mes.</p>
+            
+            <div class="vip-card">
+                <h3>Membresía Premium</h3>
+                <div class="vip-price">S/10 <span>/mes</span></div>
+                
+                <ul class="vip-features">
+                    <li>Acceso a <strong>+1000 webs premium</strong> (plantillas, herramientas, recursos)</li>
+                    <li>Grupo exclusivo de <strong>WhatsApp con otros hackers</strong> y desarrolladores</li>
+                    <li><strong>Descuentos del 20%</strong> en todos mis servicios</li>
+                    <li>Tutoriales <strong>avanzados de hacking ético</strong> y desarrollo web</li>
+                    <li>Soporte <strong>prioritario</strong> para tus proyectos</li>
+                    <li>Acceso a <strong>herramientas exclusivas</strong> que no están disponibles públicamente</li>
+                </ul>
+                
+                <a href="https://wa.me/51935062436?text=¡Estoy%20interesado%20en%20el%20Club%20VIP%20de%20AgenteK9!%20Quiero%20pagar%20los%20S/10%20mensuales." class="vip-btn">Únete Ahora</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="portfolio-container">
+            <h2 class="section-title">Mis Proyectos Recientes</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Proyecto 1" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>Cafetería Aroma Local</h3>
+                        <p>HTML, CSS, JavaScript - Sitio web completo con menú interactivo</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Proyecto 2" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>Consultoría Digital XYZ</h3>
+                        <p>WordPress, PHP - Web corporativa con blog integrado</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Proyecto 3" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>Landing para Boda</h3>
+                        <p>React, Animaciones CSS - Sitio emocional con galería interactiva</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Proyecto 4" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>Tienda Online Básica</h3>
+                        <p>JavaScript, Firebase - E-commerce con carrito de compras</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Proyecto 5" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>Blog de Tecnología</h3>
+                        <p>Next.js, Markdown - Blog rápido con sistema de categorías</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Proyecto 6" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>Dashboard de Analytics</h3>
+                        <p>React, Chart.js - Panel de control con visualización de datos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="testimonials-container">
+            <h2 class="section-title">Clientes Satisfechos</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>AgenteK9 transformó completamente mi negocio con una web increíble. No solo es hermosa, sino que también ha aumentado mis ventas un 40%. ¡El verdadero hacker de las conversiones!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Cliente 1" class="author-img">
+                        <div class="author-info">
+                            <h4>María Fernández</h4>
+                            <p>Dueña, Cafetería Aroma</p>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>Contraté a AgenteK9 para mi sitio web de bodas y superó todas mis expectativas. Capturó exactamente la esencia de nuestra relación y creó algo único que nuestros invitados amaron.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cliente 2" class="author-img">
+                        <div class="author-info">
+                            <h4>Carlos & Ana</h4>
+                            <p>Clientes - Sitio de Boda</p>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>Como consultora necesitaba una web profesional que transmitiera confianza. AgenteK9 no solo logró eso, sino que también implementó excelentes prácticas de SEO. ¡Mi teléfono no ha dejado de sonar!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Cliente 3" class="author-img">
+                        <div class="author-info">
+                            <h4>Lucía Mendoza</h4>
+                            <p>CEO, Consultoría XYZ</p>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews">
+        <div class="reviews-container">
+            <h2 class="section-title">Deja Tu Reseña</h2>
+            <div id="reviews-list">
+                <!-- Las reseñas se cargarán aquí dinámicamente -->
+            </div>
+            
+            <form id="review-form" class="review-form">
+                <div class="form-group">
+                    <label for="review-name">Tu Nombre</label>
+                    <input type="text" id="review-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="review-text">Tu Reseña</label>
+                    <textarea id="review-text" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="review-rating">Calificación</label>
+                    <select id="review-rating" required>
+                        <option value="5">★★★★★ - Excelente</option>
+                        <option value="4">★★★★☆ - Muy Bueno</option>
+                        <option value="3">★★★☆☆ - Bueno</option>
+                        <option value="2">★★☆☆☆ - Regular</option>
+                        <option value="1">★☆☆☆☆ - Malo</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">Enviar Reseña</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2 class="section-title">Contacto</h2>
+                <div class="contact-method">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-text">
+                        <h3>Email</h3>
+                        <p>kevinbrayansoy@gmail.com</p>
+                    </div>
+                </div>
+                <div class="contact-method">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-text">
+                        <h3>WhatsApp</h3>
+                        <p>+51 935 062 436</p>
+                    </div>
+                </div>
+                <div class="contact-method">
+                    <div class="contact-icon">🕒</div>
+                    <div class="contact-text">
+                        <h3>Horario</h3>
+                        <p>Lun-Vie: 9am - 6pm</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <h3>Envíame un Mensaje</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensaje</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">AgenteK9</div>
+        <div class="footer-links">
+            <a href="#about">Sobre Mí</a>
+            <a href="#services">Servicios</a>
+            <a href="#vip">Club VIP</a>
+            <a href="#portfolio">Portafolio</a>
+            <a href="#contact">Contacto</a>
+        </div>
+        <div class="social-links">
+            <a href="#" class="social-link">GitHub</a>
+            <a href="#" class="social-link">LinkedIn</a>
+            <a href="#" class="social-link">Instagram</a>
+            <a href="#" class="social-link">Twitter</a>
+        </div>
+        <p class="copyright">© 2023 AgenteK9. Todos los derechos reservados. Hacked with ❤️</p>
+    </footer>
+
+    <!-- Firebase Integration -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+        import { getDatabase, ref, push, onValue, set } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+        
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC5ZmZ08hddNTthlxeiLtV0rd8QrksOFnc",
+            authDomain: "amor-932c1.firebaseapp.com",
+            databaseURL: "https://amor-932c1-default-rtdb.firebaseio.com",
+            projectId: "amor-932c1",
+            storageBucket: "amor-932c1.appspot.com",
+            messagingSenderId: "970209269031",
+            appId: "1:970209269031:web:ff6c1e246d49102ae18502"
+        };
+        
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        
+        // Referencia a las reseñas
+        const reviewsRef = ref(database, 'reviews');
+        
+        // Escuchar cambios en las reseñas
+        onValue(reviewsRef, (snapshot) => {
+            const reviews = snapshot.val();
+            const reviewsList = document.getElementById('reviews-list');
+            reviewsList.innerHTML = '';
+            
+            if (reviews) {
+                Object.keys(reviews).forEach(key => {
+                    const review = reviews[key];
+                    const reviewElement = document.createElement('div');
+                    reviewElement.className = 'review-item';
+                    reviewElement.innerHTML = `
+                        <div class="review-header">
+                            <span class="review-author">${review.name}</span>
+                            <span class="review-rating">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</span>
+                        </div>
+                        <div class="review-text">${review.text}</div>
+                        <div class="review-date">${new Date(review.timestamp).toLocaleDateString()}</div>
+                    `;
+                    reviewsList.appendChild(reviewElement);
+                });
+            }
+        });
+        
+        // Manejar el envío de reseñas
+        const reviewForm = document.getElementById('review-form');
+        reviewForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('review-name').value;
+            const text = document.getElementById('review-text').value;
+            const rating = document.getElementById('review-rating').value;
+            
+            const newReview = {
+                name,
+                text,
+                rating: parseInt(rating),
+                timestamp: new Date().toISOString()
+            };
+            
+            // Guardar la nueva reseña
+            push(reviewsRef, newReview)
+                .then(() => {
+                    reviewForm.reset();
+                    alert('¡Gracias por tu reseña!');
+                })
+                .catch((error) => {
+                    console.error('Error al guardar la reseña:', error);
+                    alert('Hubo un error al enviar tu reseña. Por favor, inténtalo de nuevo.');
+                });
+        });
+        
+        // Optimización de la base de datos
+        // 1. Estructura de datos plana
+        // 2. Índices para búsquedas frecuentes
+        // 3. Reglas de seguridad (deberían configurarse en Firebase Console)
+        
+        // Ejemplo de reglas recomendadas (debes configurarlas en Firebase Console):
+        /*
+        {
+            "rules": {
+                "reviews": {
+                    ".read": true,
+                    ".write": "auth != null || newData.child('timestamp').val() <= now",
+                    ".validate": "newData.hasChildren(['name', 'text', 'rating', 'timestamp'])",
+                    "name": { ".validate": "newData.isString() && newData.val().length > 0" },
+                    "text": { ".validate": "newData.isString() && newData.val().length > 0" },
+                    "rating": { ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 5" },
+                    "timestamp": { ".validate": "newData.isString()" }
+                }
+            }
+        }
+        */
+    </script>
+
+    <!-- Mobile Menu Toggle -->
+    <script>
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
